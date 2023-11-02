@@ -36,10 +36,9 @@ console.log(
  *  text - Текст, який треба перевірити.
  */
 function checkWord(word, text) {
-  const flags = 'i';
-  const regex = new RegExp(word, flags);
-  const test1 = text.test('word');
-  return test1;
+  const regex = new RegExp(word, "i");
+  const wordExists = regex.test(text);
+  return wordExists;
   // Створення регулярного виразу для пошуку слова з флагом 'i' (регістронезалежний пошук).
   // Використання методу `test` регулярного виразу для перевірки наявності слова у тексті.
   // Повернення результату перевірки.
@@ -83,11 +82,8 @@ console.log(extractTextInParentheses("I have some (text) in (parentheses)."));
 function countEmails(str) {
   const regex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g;
   const found = str.match(regex);
-  const regex1 = str.exec(regex);
-  return {
-    found,
-    regex1,
-  }
+  const count = found ? found.length : 0;
+  return count;
 
   // Створення регулярного виразу для пошуку email-адрес /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/g.
   // Використання методу `match` для отримання всіх збігів регулярного виразу.
@@ -151,13 +147,10 @@ console.log(
  * Повертає  - true, якщо флаги 'g' та 'm' присутні, інакше - false.
  */
 function checkRegexFlags(regex) {
-  const str1 = 'g';
-  const str2 = 'm';
-  if(regex.includes(str1) === true || regex.includes(str2)) {
-    return true;
-  } else {
-    return false;
-  }
+  const flags = regex.flags;
+  const hasGlobalFlag = flags.includes("g");
+  const hasMultilineFlag = flags.includes("m");
+  return hasGlobalFlag && hasMultilineFlag;
   // Отримуємо всі флаги регулярного виразу.
   // Перевіряємо наявність флагів 'g' та 'm' за допомогою методу `includes`.
   // Повертаємо  - true, якщо флаги 'g' та 'm' присутні, інакше - false
